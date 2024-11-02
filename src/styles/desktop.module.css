@@ -1,0 +1,8 @@
+.desktop {
+    background-image: url("/bg-l.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
+    height: 100%;
+}
