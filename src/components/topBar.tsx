@@ -4,20 +4,23 @@ import styles from "../styles/topBar.module.css";
 import { useState, useEffect } from "react";
 import { getTimeFormatted } from "@/lib/getTimeFormatted";
 import { getDateFormatted } from "@/lib/getDateFormatted";
+import { useStateContext } from "./stateProvider";
 
 export default function TopBar() {
   const [time, setTime] = useState<string>(getTimeFormatted);
   const [date, setDate] = useState<string>(getDateFormatted);
+  const { state, setState } = useStateContext();
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getTimeFormatted);
       setDate(getDateFormatted);
     }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className={styles.topBar}>
+    <div className={styles.topBar} style={{ backgroundColor: state.maximized ? 'green' : 'red'}}>
       <div className={`${styles.topBarItem} ${styles.tabs}`}>tabs</div>
       <div className={`${styles.centerMenu} ${styles.topBarItem}`}>
         <div>{date}</div>

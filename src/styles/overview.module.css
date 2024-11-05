@@ -1,0 +1,14 @@
+.overview {
+    height: calc(100vh - 32px);
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 100px;
+    transition-duration: 0.2s;
+    position: relative;
+}
+.maximized {
+    padding: 0;
+}
+.notMaximized {
+    padding: 0 0;
+}

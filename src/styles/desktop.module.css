@@ -1,8 +1,17 @@
 .desktop {
-    background-image: url("/bg-l.webp");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: contain;
-    height: 100%;
+    background-color: purple;
+    transition-duration: 0.2s;
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+.maximized {
+    border-radius: 0;
+    gap: 0;
+}
+.notMaximized {
+    border-radius: 45px;
 }
