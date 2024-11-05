@@ -39,6 +39,12 @@
     display: flex;
     flex-flow: row nowrap;
 }
+.maximized {
+    background-color: black;
+}
+.notMaximized {
+    background-color: #282828;
+}
 
 @media (pointer: fine) {
     .topBarItem:hover {

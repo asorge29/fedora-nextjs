@@ -8,7 +8,7 @@ export const StateProvider = ({children} : {children: React.ReactNode}) => {
   const [state, setState] = useState(
     {
       selectedDesktop: 0,
-      desktops: 4,
+      desktops: 2,
       maximized: false
     }
   );

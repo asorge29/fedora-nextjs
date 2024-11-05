@@ -5,6 +5,7 @@
     gap: 100px;
     transition-duration: 0.2s;
     position: relative;
+    background-color: #282828;
 }
 .maximized {
     padding: 0;

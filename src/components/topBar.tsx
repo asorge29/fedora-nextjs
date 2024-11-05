@@ -18,10 +18,14 @@ export default function TopBar() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+  
+  const toggleMax = () => {
+    setState({...state, maximized: !state.maximized});
+  }
 
   return (
-    <div className={styles.topBar} style={{ backgroundColor: state.maximized ? 'green' : 'red'}}>
-      <div className={`${styles.topBarItem} ${styles.tabs}`}>tabs</div>
+    <div className={`${styles.topBar} ${state.maximized ? styles.maximized : styles.notMaximized}`}>
+      <div className={`${styles.topBarItem} ${styles.tabs}`} onClick={toggleMax}>tabs</div>
       <div className={`${styles.centerMenu} ${styles.topBarItem}`}>
         <div>{date}</div>
         <div>{time}</div>
