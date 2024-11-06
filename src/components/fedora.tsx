@@ -19,6 +19,16 @@ export default function Fedora() {
           setState({ ...state, maximized: true });
         }
       }
+      
+      if (e.shiftKey) {
+        e.preventDefault();
+        if (e.deltaY > 5 && state.selectedDesktop < state.desktops - 1) {
+          setState({ ...state, selectedDesktop: state.selectedDesktop + 1 });
+        }
+        if (e.deltaY < -5 && state.selectedDesktop > 0) {
+          setState({ ...state, selectedDesktop: state.selectedDesktop - 1 });
+        }
+      }
 
       if (e.deltaX !== 0) {
         e.preventDefault();

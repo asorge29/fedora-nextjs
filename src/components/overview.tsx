@@ -17,8 +17,12 @@ export default function Overview() {
           <input type="text" placeholder="Type to search" className={styles.search} />
         </form>
       </div>
-      {[...Array(state.desktops)].map((_, i) => (
-        <Desktop key={i} id={i} />
-      ))}    </div>
+        {[...Array(state.desktops)].map((_, i) => (
+          <Desktop key={i} id={i} />
+        ))}
+      <div className={styles.dock}>
+        
+      </div>
+    </div>
   );
 }
