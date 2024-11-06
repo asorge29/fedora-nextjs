@@ -25,7 +25,11 @@ export default function TopBar() {
 
   return (
     <div className={`${styles.topBar} ${state.maximized ? styles.maximized : styles.notMaximized}`}>
-      <div className={`${styles.topBarItem} ${styles.tabs}`} onClick={toggleMax}>tabs</div>
+      <div className={`${styles.topBarItem} ${styles.tabs}`} onClick={toggleMax}>
+        {[...Array(state.desktops).keys()].map((i) => (
+          <div key={i} className={`${styles.dot} ${i === state.selectedDesktop ? styles.selectedDot : ''}`}></div>
+        ))}
+      </div>
       <div className={`${styles.centerMenu} ${styles.topBarItem}`}>
         <div>{date}</div>
         <div>{time}</div>

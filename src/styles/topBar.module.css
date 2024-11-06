@@ -39,6 +39,7 @@
     padding: 4px 1ch;
     display: flex;
     flex-flow: row nowrap;
+    gap: 5px;
 }
 .maximized {
     background-color: black;
@@ -47,6 +48,17 @@
 .notMaximized {
     background-color: #282828;
     transform-origin: 0.4s;
+}
+.dot {
+    background-color: rgb(169, 169, 169);
+    height: 10px;
+    width: 10px;
+    border-radius: 999px;
+    transition-duration: 0.4s;
+}
+.selectedDot {
+    background-color: white;
+    width: 20px;
 }
 
 @media (pointer: fine) {
