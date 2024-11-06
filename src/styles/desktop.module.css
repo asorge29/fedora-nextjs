@@ -3,26 +3,24 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    transition-duration: 0.2s;
-    width: 60vw;
-    height: 65vh;
+    transition-duration: 0.4s;
     position: absolute;
-    top: 50%;
     transform: translate(-50%, -50%);
     left: 50%;
-    border-radius: 45px;
     z-index: 10;
 }
 .maximized {
     border-radius: 0;
-    gap: 0;
     height: calc(100vh - 32px);
     width: 100vw;
-    z-index: 100;
+    top: 50%;
 }
 .notMaximized {
     border-radius: 45px;
+    width: 75vw;
+    height: 65vh;
+    top: 45%;
 }
-.hidden {
-    z-index: 0;
+.notSelected {
+    height: 60vh;
 }

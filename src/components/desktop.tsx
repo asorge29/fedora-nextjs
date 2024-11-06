@@ -5,7 +5,22 @@ export default function Desktop({ id }: { id: number }) {
 
   const { state, setState } = useStateContext();
 
-  return <div className={`${styles.desktop} ${state.maximized ? id === state.selectedDesktop ? styles.maximized : styles.hidden : styles.notMaximized}`} style={{left: `calc(50% + ${-65 * state.selectedDesktop}vw + ${id * 65}vw)`}}>
+  const notMaximizedStyle = {
+    left: `calc(50% + ${-80 * state.selectedDesktop}vw + ${id * 80}vw)`
+  }
+
+  const maximizedStyle = {
+    left: `calc(50% + ${-100 * state.selectedDesktop}vw + ${id * 100}vw)`
+  }
+
+  const maximizeDesktop = () => {
+    if (!state.maximized) {
+      setState({...state, maximized: true});
+      return;
+    }
+  }
+
+  return <div className={`${styles.desktop} ${state.maximized ? styles.maximized : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`} style={state.maximized ? maximizedStyle : notMaximizedStyle} onClick={maximizeDesktop}>
     {id}
   </div>;
 }

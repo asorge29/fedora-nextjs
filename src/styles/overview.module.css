@@ -13,3 +13,23 @@
 .notMaximized {
     padding: 0 0;
 }
+.searchContainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 3%;
+    background-color: #464646;
+    padding: 10px 20px;
+    border-radius: 999px;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1ch;
+}
+.search {
+    outline: none;
+    border: none;
+    background-color: inherit;
+    font-size: 18px;
+    width: 30ch;
+    font-family: 'Cantarell';
+}

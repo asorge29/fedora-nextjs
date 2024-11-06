@@ -2,10 +2,16 @@
 
 import React, { createContext, useContext, useState } from "react";
 
+interface State {
+  selectedDesktop: number;
+  desktops: number;
+  maximized: boolean;
+}
+
 const stateContext = createContext({});
 
 export const StateProvider = ({children} : {children: React.ReactNode}) => {
-  const [state, setState] = useState(
+  const [state, setState] = useState<State>(
     {
       selectedDesktop: 0,
       desktops: 2,
@@ -22,6 +28,6 @@ export const StateProvider = ({children} : {children: React.ReactNode}) => {
 }
 
 export const useStateContext = () => useContext(stateContext) as {
-  state: any;
-  setState: (state: any) => void;
+  state: State;
+  setState: (state: State) => void;
 };

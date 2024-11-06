@@ -4,6 +4,7 @@
     font-size: 14px;
     position: relative;
     color: white;
+    transform-origin: 0.4s;
 }
 .centerMenu {
     position: absolute;
@@ -41,9 +42,11 @@
 }
 .maximized {
     background-color: black;
+    transform-origin: 0.4s;
 }
 .notMaximized {
     background-color: #282828;
+    transform-origin: 0.4s;
 }
 
 @media (pointer: fine) {
