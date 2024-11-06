@@ -35,7 +35,7 @@
 }
 .dock {
     position: absolute;
-    bottom: 0;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #3d3d3d;
@@ -43,6 +43,6 @@
     flex-flow: row nowrap;
     gap: 15px;
     width: 40vw;
-    height: 12vh;
-    border-radius: 45px;
+    height: 104px;
+    border-radius: 25px;
 }
