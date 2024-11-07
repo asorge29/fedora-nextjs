@@ -27,7 +27,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     [...Array(state.desktops)].map((i) => {
       setDesktopState([...desktopState, { id: i }]);
     });
-  });
+  }, []);
 
   return (
     <stateContext.Provider value={{ state, setState }}>
