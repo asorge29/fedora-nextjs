@@ -31,7 +31,7 @@
     background-color: inherit;
     font-size: 18px;
     width: 30ch;
-    font-family: 'Cantarell';
+    font-family: "Cantarell";
 }
 .dock {
     position: absolute;
@@ -41,8 +41,31 @@
     background-color: #3d3d3d;
     display: flex;
     flex-flow: row nowrap;
-    gap: 15px;
-    width: 40vw;
+    align-items: center;
+    gap: 4px;
     height: 104px;
-    border-radius: 25px;
+    border-radius: 24px;
+    padding: 0 14px;
+}
+.dockItem {
+    height: 76px;
+    width: 76px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dockItem > img {
+    display: block;
+}
+.divider {
+    height: 64px;
+    width: 1px;
+    background-color: #4f4f4f;
+}
+
+@media (pointer: fine) {
+    .dockItem:hover {
+        background-color: #ffffff2b;
+    }
 }

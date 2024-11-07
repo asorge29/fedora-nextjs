@@ -13,10 +13,12 @@
     transform: translate(-50%, -50%);
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     gap: 14px;
     padding: 0 1ch;
     font-weight: 700;
-    font-size: 14.666px;
+    font-size: 15px;
+    height: 24px;
 }
 .topBarItem {
     border-radius: 999px;
@@ -30,6 +32,7 @@
     display: flex;
     flex-flow: row nowrap;
     gap: 10px;
+    height: 24px;
 }
 .tabs {
     position: absolute;
@@ -37,9 +40,11 @@
     top: 50%;
     transform: translateY(-50%);
     padding: 4px 1ch;
+    height: 24px;
     display: flex;
     flex-flow: row nowrap;
     gap: 5px;
+    align-items: center;
 }
 .maximized {
     background-color: black;
@@ -50,20 +55,21 @@
     transform-origin: 0.4s;
 }
 .dot {
-    background-color: rgb(169, 169, 169);
-    height: 10px;
-    width: 10px;
+    background-color: #7f7f7f;
+    height: 6px;
+    width: 6px;
     border-radius: 999px;
     transition-duration: 0.4s;
 }
 .selectedDot {
     background-color: white;
-    width: 20px;
+    width: 26px;
+    height: 8px;
 }
 
 @media (pointer: fine) {
     .topBarItem:hover {
         cursor: default;
-        background-color: #2b2b2b;
+        background-color: #ffffff2b;
     }
 }

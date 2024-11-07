@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface State {
   selectedDesktop: number;
@@ -8,26 +8,44 @@ interface State {
   maximized: boolean;
 }
 
-const stateContext = createContext({});
-
-export const StateProvider = ({children} : {children: React.ReactNode}) => {
-  const [state, setState] = useState<State>(
-    {
-      selectedDesktop: 0,
-      desktops: 2,
-      maximized: false
-    }
-  );
-
-  return (
-    <stateContext.Provider value={{state, setState}}>
-      {children}
-    </stateContext.Provider>
-  );
-
+interface DesktopState {
+  id: number;
 }
 
-export const useStateContext = () => useContext(stateContext) as {
-  state: State;
-  setState: (state: State) => void;
+const stateContext = createContext({});
+const desktopContext = createContext({});
+
+export const StateProvider = ({ children }: { children: React.ReactNode }) => {
+  const [state, setState] = useState<State>({
+    selectedDesktop: 0,
+    desktops: 2,
+    maximized: false,
+  });
+  const [desktopState, setDesktopState] = useState<DesktopState[]>([]);
+
+  useEffect(() => {
+    [...Array(state.desktops)].map((i) => {
+      setDesktopState([...desktopState, { id: i }]);
+    });
+  });
+
+  return (
+    <stateContext.Provider value={{ state, setState }}>
+      <desktopContext.Provider value={{ desktopState, setDesktopState }}>
+        {children}
+      </desktopContext.Provider>
+    </stateContext.Provider>
+  );
 };
+
+export const useStateContext = () =>
+  useContext(stateContext) as {
+    state: State;
+    setState: (state: State) => void;
+  };
+
+export const useDesktopContext = () =>
+  useContext(desktopContext) as {
+    desktopState: [];
+    setDesktopState: ([]) => void;
+  };

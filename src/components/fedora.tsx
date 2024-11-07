@@ -10,7 +10,7 @@ export default function Fedora() {
   const { state, setState } = useStateContext();
 
   useEffect(() => {
-    const handleWheel = (e : WheelEvent) => {
+    const handleWheel = (e: WheelEvent) => {
       if (e.ctrlKey) {
         e.preventDefault();
         if (e.deltaY > 0) {
@@ -19,7 +19,7 @@ export default function Fedora() {
           setState({ ...state, maximized: true });
         }
       }
-      
+
       if (e.shiftKey) {
         e.preventDefault();
         if (e.deltaY > 5 && state.selectedDesktop < state.desktops - 1) {
@@ -50,7 +50,6 @@ export default function Fedora() {
 
   return (
     <div className={styles.screen}>
-      {JSON.stringify(state)}
       <TopBar />
       <Overview />
     </div>
