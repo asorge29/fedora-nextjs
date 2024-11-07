@@ -2,11 +2,20 @@
 
 import styles from "../styles/overview.module.css";
 import Desktop from "./desktop";
-import { useStateContext } from "./stateProvider";
+import { useStateContext, useDesktopContext, DesktopState } from "./stateProvider";
 import Image from "next/image";
 
 export default function Overview() {
   const { state } = useStateContext();
+  const { desktopState, setDesktopState } = useDesktopContext();
+
+  const openApp = (id: number, app: string) => {
+    const updatedDesktop = {
+      ...desktopState[id],
+      [`${app}Open`]: !desktopState[id]?.[`${app}Open` as keyof DesktopState],
+    };
+    
+  setDesktopState([...desktopState.slice(0, id), updatedDesktop as DesktopState, ...desktopState.slice(id + 1)]);  };
 
   return (
     <div
@@ -39,20 +48,20 @@ export default function Overview() {
         <Desktop key={i} id={i} />
       ))}
       <div className={styles.dock}>
-        <div className={styles.dockItem}>
+        <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "files")}>
           <Image src="/files.svg" height={64} width={64} alt="files" />
         </div>
-        <div className={styles.dockItem}>
-          <Image src="/vscode.svg" height={64} width={64} alt="files" />
+        <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "vscode")}>
+          <Image src="/vscode.svg" height={64} width={64} alt="vscode" />
         </div>
-        <div className={styles.dockItem}>
-          <Image src="/firefox.svg" height={64} width={64} alt="files" />
+        <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "firefox")}>
+          <Image src="/firefox.svg" height={64} width={64} alt="firefox" />
         </div>
-        <div className={styles.dockItem}>
-          <Image src="/terminal.svg" height={64} width={64} alt="files" />
+        <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "terminal")}>
+          <Image src="/terminal.svg" height={64} width={64} alt="terminal" />
         </div>
-        <div className={styles.dockItem}>
-          <Image src="/spotify.svg" height={64} width={64} alt="files" />
+        <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "spotify")}>
+          <Image src="/spotify.svg" height={64} width={64} alt="spotify" />
         </div>
         <div className={styles.divider}></div>
         <div className={styles.dockItem}>All apps</div>

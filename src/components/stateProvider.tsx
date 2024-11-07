@@ -8,7 +8,7 @@ interface State {
   maximized: boolean;
 }
 
-interface DesktopState {
+ export type DesktopState = {
   spotifyOpen: boolean;
   firefoxOpen: boolean;
   filesOpen: boolean;
@@ -59,6 +59,6 @@ export const useStateContext = () =>
 
 export const useDesktopContext = () =>
   useContext(desktopContext) as {
-    desktopState: [];
-    setDesktopState: ([]) => void;
+    desktopState: DesktopState[];
+    setDesktopState: (state: DesktopState[]) => void;
   };
