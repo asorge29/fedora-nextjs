@@ -1,6 +1,5 @@
 import styles from "../styles/desktop.module.css";
 import { useStateContext } from "./stateProvider";
-import Window from "./window";
 
 export default function Desktop({ id }: { id: number }) {
   const { state, setState } = useStateContext();
@@ -27,12 +26,7 @@ export default function Desktop({ id }: { id: number }) {
       style={state.maximized ? maximizedStyle : notMaximizedStyle}
       onClick={maximizeDesktop}
     >
-      <Window title="Window">
-        <iframe style={{borderRadius: '12px', border: '0'}} src="https://open.spotify.com/embed/playlist/5cyrZNqBNuJOiB4shVkdVP?utm_source=generator" width="100%" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-        </iframe>
-      </Window>
+      
     </div>
   );
 }
