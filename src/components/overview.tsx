@@ -1,13 +1,12 @@
 "use client";
 
 import styles from "../styles/overview.module.css";
-import { useEffect, useState } from "react";
 import Desktop from "./desktop";
 import { useStateContext } from "./stateProvider";
 import Image from "next/image";
 
 export default function Overview() {
-  const { state, setState } = useStateContext();
+  const { state } = useStateContext();
 
   return (
     <div

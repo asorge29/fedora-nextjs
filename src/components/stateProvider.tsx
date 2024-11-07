@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 interface State {
   selectedDesktop: number;
@@ -9,7 +9,11 @@ interface State {
 }
 
 interface DesktopState {
-  id: number;
+  spotifyOpen: boolean;
+  firefoxOpen: boolean;
+  filesOpen: boolean;
+  settingsOpen: boolean;
+  vscodeOpen: boolean;
 }
 
 const stateContext = createContext({});
@@ -21,14 +25,23 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     desktops: 2,
     maximized: false,
   });
-  const [desktopState, setDesktopState] = useState<DesktopState[]>([]);
-
-  useEffect(() => {
-    [...Array(state.desktops)].map((i) => {
-      setDesktopState([...desktopState, { id: i }]);
-    });
-  }, []);
-
+  const [desktopState, setDesktopState] = useState<DesktopState[]>([
+    {
+      spotifyOpen: false,
+      firefoxOpen: false,
+      filesOpen: false,
+      settingsOpen: false,
+      vscodeOpen: false,
+    },
+    {
+      spotifyOpen: false,
+      firefoxOpen: false,
+      filesOpen: false,
+      settingsOpen: false,
+      vscodeOpen: false,
+    }
+  ]);
+  
   return (
     <stateContext.Provider value={{ state, setState }}>
       <desktopContext.Provider value={{ desktopState, setDesktopState }}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "../styles/fedora.module.css";
 import { useStateContext } from "./stateProvider";
 import Overview from "./overview";
