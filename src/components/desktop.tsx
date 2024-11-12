@@ -1,18 +1,20 @@
 import styles from "../styles/desktop.module.css";
-import { useStateContext, useDesktopContext } from "./stateProvider";
+import {useStateContext, useDesktopContext} from "./stateProvider";
 import Spotify from "./apps/spotify";
 import Vscode from "./apps/vscode";
 import Firefox from "./apps/firefox";
-import React from "react";
+import React, {useState} from "react";
 import {useDroppable} from "@dnd-kit/core";
 
 
-export default function Desktop({ id }: { id: number }) {
-  const { state, setState } = useStateContext();
-  const { desktopState } = useDesktopContext();
+export default function Desktop({id}: { id: number }) {
+  const {state, setState} = useStateContext();
+  const {desktopState} = useDesktopContext();
   const {isOver, setNodeRef} = useDroppable({
-    id: 'droppable',
+    id: id,
   });
+  
+  const [spotifyOpen, setSpotifyOpen] = useState(false);
 
 
   const notMaximizedStyle = {
@@ -25,9 +27,9 @@ export default function Desktop({ id }: { id: number }) {
     backgroundColor: isOver ? 'green' : undefined
   };
 
-  const maximizeDesktop = () => {
+  const maximizeDesktop = (id: number) => {
     if (!state.maximized) {
-      setState({ ...state, maximized: true });
+      setState({...state, maximized: true, selectedDesktop: id});
       return;
     }
   };
@@ -36,12 +38,13 @@ export default function Desktop({ id }: { id: number }) {
     <div
       className={`${styles.desktop} ${state.maximized ? styles.maximized : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`}
       style={state.maximized ? maximizedStyle : notMaximizedStyle}
-      onClick={maximizeDesktop}
+      onClick={() => maximizeDesktop(id)}
       ref={setNodeRef}
     >
-     {desktopState[id].spotifyOpen ? <Spotify /> : null}
-     {desktopState[id].vscodeOpen ? <Vscode /> : null}
-     {desktopState[id].firefoxOpen ? <Firefox /> : null}
+      {spotifyOpen && <Spotify/>}
+      {desktopState[id].spotifyOpen ? <Spotify/> : null}
+      {desktopState[id].vscodeOpen ? <Vscode/> : null}
+      {desktopState[id].firefoxOpen ? <Firefox/> : null}
     </div>
   );
 }

@@ -18,9 +18,13 @@ export default function Overview() {
 
     setDesktopState([...desktopState.slice(0, id), updatedDesktop as DesktopState, ...desktopState.slice(id + 1)]);
   };
+  
+  const handleDragEnd = (e: object) => {
+    console.log(e.over);
+  }
 
   return (
-    <DndContext>
+    <DndContext onDragEnd={handleDragEnd}>
       <div
         className={`${styles.overview} ${state.maximized ? styles.maximized : styles.notMaximized}`}
       >
