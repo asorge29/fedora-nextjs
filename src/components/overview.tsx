@@ -31,7 +31,7 @@ export default function Overview() {
   )
   
   const handleDragEnd = (e: object) => {
-    console.log(e);
+    setState({...state, [e.active.id]: e.over.id, selectedDesktop: e.over.id});
   }
 
   return (

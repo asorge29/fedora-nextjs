@@ -51,6 +51,7 @@ export default function Fedora() {
   return (
     <div className={styles.screen}>
       <TopBar />
+      {JSON.stringify(state)}
       <Overview />
     </div>
   );

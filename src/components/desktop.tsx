@@ -15,7 +15,7 @@ export default function Desktop({id}: { id: number }) {
 
   const notMaximizedStyle = {
     left: `calc(50% + ${-80 * state.selectedDesktop}vw + ${id * 80}vw)`,
-    backgroundColor: isOver ? 'green' : undefined
+    backgroundImage: isOver ? 'linear-gradient(rgba(0, 128, 0, 0.6), rgba(0, 128, 0, 0.6)), url("/bg-l.webp")'  : ''
   };
 
   const maximizedStyle = {

@@ -7,7 +7,7 @@ export default function Window({ title, children, app }: { title: string, childr
   const {state, setState} = useStateContext();
   
   const {attributes, listeners, setNodeRef, transform} = useDraggable({
-    id: title,
+    id: app,
   });
   const style = transform ? {
     transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
