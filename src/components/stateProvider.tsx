@@ -6,14 +6,11 @@ interface State {
   selectedDesktop: number;
   desktops: number;
   maximized: boolean;
-}
-
- export type DesktopState = {
-  spotifyOpen: boolean;
-  firefoxOpen: boolean;
-  filesOpen: boolean;
-  settingsOpen: boolean;
-  vscodeOpen: boolean;
+  spotify: number;
+  vscode: number;
+  firefox: number;
+  files: number;
+  settings: number;
 }
 
 const stateContext = createContext({});
@@ -24,29 +21,15 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     selectedDesktop: 0,
     desktops: 2,
     maximized: false,
+    spotify: -1,
+    vscode: -1,
+    firefox: -1,
+    files: -1,
   });
-  const [desktopState, setDesktopState] = useState<DesktopState[]>([
-    {
-      spotifyOpen: false,
-      firefoxOpen: false,
-      filesOpen: false,
-      settingsOpen: false,
-      vscodeOpen: false,
-    },
-    {
-      spotifyOpen: false,
-      firefoxOpen: false,
-      filesOpen: false,
-      settingsOpen: false,
-      vscodeOpen: false,
-    }
-  ]);
-  
+
   return (
     <stateContext.Provider value={{ state, setState }}>
-      <desktopContext.Provider value={{ desktopState, setDesktopState }}>
-        {children}
-      </desktopContext.Provider>
+      {children}
     </stateContext.Provider>
   );
 };
@@ -55,10 +38,4 @@ export const useStateContext = () =>
   useContext(stateContext) as {
     state: State;
     setState: (state: State) => void;
-  };
-
-export const useDesktopContext = () =>
-  useContext(desktopContext) as {
-    desktopState: DesktopState[];
-    setDesktopState: (state: DesktopState[]) => void;
   };

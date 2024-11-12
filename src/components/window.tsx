@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Window({ title, children }: { title: string, children: React.ReactNode }) {
   const {attributes, listeners, setNodeRef, transform} = useDraggable({
-    id: 'draggable',
+    id: title,
   });
   const style = transform ? {
     transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,

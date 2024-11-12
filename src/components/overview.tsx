@@ -20,7 +20,7 @@ export default function Overview() {
   };
   
   const handleDragEnd = (e: object) => {
-    console.log(e.over);
+    console.log(e);
   }
 
   return (
