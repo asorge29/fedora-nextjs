@@ -2,19 +2,18 @@
 
 import React, { createContext, useContext, useState } from "react";
 
-interface State {
+export type State = {
   selectedDesktop: number;
   desktops: number;
   maximized: boolean;
   spotify: number;
   vscode: number;
+  terminal: number;
   firefox: number;
   files: number;
   settings: number;
 }
-
 const stateContext = createContext({});
-const desktopContext = createContext({});
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, setState] = useState<State>({
@@ -23,8 +22,10 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     maximized: false,
     spotify: -1,
     vscode: -1,
+    terminal: -1,
     firefox: -1,
     files: -1,
+    settings: -1,
   });
 
   return (

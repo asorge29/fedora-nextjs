@@ -1,21 +1,17 @@
 import styles from "../styles/desktop.module.css";
-import {useStateContext, useDesktopContext} from "./stateProvider";
+import {useStateContext} from "./stateProvider";
 import Spotify from "./apps/spotify";
 import Vscode from "./apps/vscode";
 import Firefox from "./apps/firefox";
-import React, {useState} from "react";
+import React from "react";
 import {useDroppable} from "@dnd-kit/core";
 
 
 export default function Desktop({id}: { id: number }) {
   const {state, setState} = useStateContext();
-  const {desktopState} = useDesktopContext();
   const {isOver, setNodeRef} = useDroppable({
     id: id,
   });
-  
-  const [spotifyOpen, setSpotifyOpen] = useState(false);
-
 
   const notMaximizedStyle = {
     left: `calc(50% + ${-80 * state.selectedDesktop}vw + ${id * 80}vw)`,
@@ -41,10 +37,11 @@ export default function Desktop({id}: { id: number }) {
       onClick={() => maximizeDesktop(id)}
       ref={setNodeRef}
     >
-      {spotifyOpen && <Spotify/>}
-      {desktopState[id].spotifyOpen ? <Spotify/> : null}
-      {desktopState[id].vscodeOpen ? <Vscode/> : null}
-      {desktopState[id].firefoxOpen ? <Firefox/> : null}
+      {state.spotify === id && <Spotify/>}
+      {state.vscode === id && <Vscode/>}
+      {state.firefox === id && <Firefox/>}
+      {state.files === id && <div>Files</div>}
+      {state.settings === id && <div>Settings</div>}
     </div>
   );
 }

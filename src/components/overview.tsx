@@ -2,29 +2,40 @@
 
 import styles from "../styles/overview.module.css";
 import Desktop from "./desktop";
-import {DesktopState, useDesktopContext, useStateContext} from "./stateProvider";
+import {useStateContext} from "./stateProvider";
 import Image from "next/image";
-import {DndContext} from '@dnd-kit/core';
+import {DndContext, useSensors, useSensor, PointerSensor} from '@dnd-kit/core';
 
 export default function Overview() {
-  const {state} = useStateContext();
-  const {desktopState, setDesktopState} = useDesktopContext();
+  const {state, setState} = useStateContext();
 
-  const openApp = (id: number, app: string) => {
-    const updatedDesktop = {
-      ...desktopState[id],
-      [`${app}Open`]: !desktopState[id]?.[`${app}Open` as keyof DesktopState],
-    };
-
-    setDesktopState([...desktopState.slice(0, id), updatedDesktop as DesktopState, ...desktopState.slice(id + 1)]);
+  const openApp = (app: keyof typeof state) => {
+    if (state[app] === -1) {
+      setState({...state, [app]: state.selectedDesktop});
+      return;
+    } else if (state.selectedDesktop !== state[app]) {
+      setState({...state, selectedDesktop: state[app] as number});
+      return;
+    } else if (state.selectedDesktop === state[app]) {
+      setState({...state, maximized: true});
+      return;
+    }
   };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  )
   
   const handleDragEnd = (e: object) => {
     console.log(e);
   }
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
       <div
         className={`${styles.overview} ${state.maximized ? styles.maximized : styles.notMaximized}`}
       >
@@ -55,19 +66,19 @@ export default function Overview() {
           <Desktop key={i} id={i}/>
         ))}
         <div className={styles.dock}>
-          <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "files")}>
+          <div className={styles.dockItem} onClick={() => openApp("files")}>
             <Image src="/files.svg" height={64} width={64} alt="files"/>
           </div>
-          <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "vscode")}>
+          <div className={styles.dockItem} onClick={() => openApp("vscode")}>
             <Image src="/vscode.svg" height={64} width={64} alt="vscode"/>
           </div>
-          <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "firefox")}>
+          <div className={styles.dockItem} onClick={() => openApp("firefox")}>
             <Image src="/firefox.svg" height={64} width={64} alt="firefox"/>
           </div>
-          <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "terminal")}>
+          <div className={styles.dockItem} onClick={() => openApp("terminal")}>
             <Image src="/terminal.svg" height={64} width={64} alt="terminal"/>
           </div>
-          <div className={styles.dockItem} onClick={() => openApp(state.selectedDesktop, "spotify")}>
+          <div className={styles.dockItem} onClick={() => openApp("spotify")}>
             <Image src="/spotify.svg" height={64} width={64} alt="spotify"/>
           </div>
           <div className={styles.divider}></div>

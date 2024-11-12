@@ -2,13 +2,12 @@
 
 import { useEffect } from "react";
 import styles from "../styles/fedora.module.css";
-import { useStateContext, useDesktopContext } from "./stateProvider";
+import { useStateContext } from "./stateProvider";
 import Overview from "./overview";
 import TopBar from "./topBar";
 
 export default function Fedora() {
   const { state, setState } = useStateContext();
-  const { desktopState } = useDesktopContext();
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
