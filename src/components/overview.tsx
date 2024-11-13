@@ -4,7 +4,7 @@ import styles from "../styles/overview.module.css";
 import Desktop from "./desktop";
 import {useStateContext} from "./stateProvider";
 import Image from "next/image";
-import {DndContext, useSensors, useSensor, PointerSensor} from '@dnd-kit/core';
+import {DndContext, useSensors, useSensor, PointerSensor, DragEndEvent} from '@dnd-kit/core';
 
 export default function Overview() {
   const {state, setState} = useStateContext();
@@ -30,8 +30,10 @@ export default function Overview() {
     })
   )
   
-  const handleDragEnd = (e: object) => {
-    setState({...state, [e.active.id]: e.over.id, selectedDesktop: e.over.id});
+  const handleDragEnd = (e: DragEndEvent) => {
+    if (e.over) {
+      setState({...state, [e.active.id]: e.over.id, selectedDesktop: e.over.id as number});
+    }
   }
 
   return (

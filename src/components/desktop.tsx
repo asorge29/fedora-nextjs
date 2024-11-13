@@ -9,18 +9,16 @@ import {useDroppable} from "@dnd-kit/core";
 
 export default function Desktop({id}: { id: number }) {
   const {state, setState} = useStateContext();
-  const {isOver, setNodeRef} = useDroppable({
+  const {setNodeRef} = useDroppable({
     id: id,
   });
 
   const notMaximizedStyle = {
-    left: `calc(50% + ${-80 * state.selectedDesktop}vw + ${id * 80}vw)`,
-    backgroundImage: isOver ? 'linear-gradient(rgba(0, 128, 0, 0.6), rgba(0, 128, 0, 0.6)), url("/bg-l.webp")'  : ''
+    left: `calc(50% + ${-80 * state.selectedDesktop}vw + ${id * 80}vw)`
   };
 
   const maximizedStyle = {
-    left: `calc(50% + ${-105 * state.selectedDesktop}vw + ${id * 105}vw)`,
-    backgroundColor: isOver ? 'green' : undefined
+    left: `calc(50% + ${-105 * state.selectedDesktop}vw + ${id * 105}vw)`
   };
 
   const maximizeDesktop = (id: number) => {
@@ -32,16 +30,20 @@ export default function Desktop({id}: { id: number }) {
 
   return (
     <div
-      className={`${styles.desktop} ${state.maximized ? styles.maximized : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`}
+      className={`${styles.wrapper} ${state.maximized ? styles.maximized : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`}
       style={state.maximized ? maximizedStyle : notMaximizedStyle}
-      onClick={() => maximizeDesktop(id)}
-      ref={setNodeRef}
     >
-      {state.spotify === id && <Spotify/>}
-      {state.vscode === id && <Vscode/>}
-      {state.firefox === id && <Firefox/>}
-      {state.files === id && <div>Files</div>}
-      {state.settings === id && <div>Settings</div>}
+      <div
+        className={`${styles.desktop} ${state.maximized ? styles.maximizedDesktop : styles.notMaximizedDesktop}`}
+        onClick={() => maximizeDesktop(id)}
+        ref={setNodeRef}
+      >
+        {state.spotify === id && <Spotify/>}
+        {state.vscode === id && <Vscode/>}
+        {state.firefox === id && <Firefox/>}
+        {state.files === id && <div>Files</div>}
+        {state.settings === id && <div>Settings</div>}
+      </div>
     </div>
-  );
-}
+      );
+      }
