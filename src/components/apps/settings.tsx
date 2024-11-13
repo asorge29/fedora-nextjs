@@ -1,5 +1,5 @@
 import styles from "@/styles/settings.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import React from "react";
 import { useStateContext } from "../stateProvider";
@@ -62,13 +62,24 @@ export default function Settings() {
           </div>
         </div>
         <div className={styles.content}>
-          <div className={styles.contentItem}>
+          {selected === 'appearance' && <div className={styles.contentItem}>
             <div className={styles.appearanceContainer}>
               <div className={styles.groupLabel}>Style</div>
               <div className={styles.group}>
-                <div>
-                  <div>Default</div>
-                  <div>Dark</div>
+                <div className={styles.schemes}>
+                  <div>
+                    <div>
+                      <Image src={`/backgrounds/${state.background}-${state.scheme}.webp`} alt='Default Scheme' width={180} height={150} />
+                    </div>
+                    Default
+                  </div>
+                  <div>
+                    <div>
+                      <Image src={`/backgrounds/${state.background}-${state.scheme}.webp`} alt='Dark Scheme'
+                             width={180} height={150}/>
+                    </div>
+                    Dark
+                  </div>
                 </div>
                 <div className={styles.divider}></div>
                 <div className={styles.colorSwatches}>
@@ -86,13 +97,28 @@ export default function Settings() {
               <div className={styles.groupLabel}>Background</div>
               <div className={styles.group}>
                 <div className={styles.backgrounds}>
-                  <Image src="/backgrounds/bubbles-l.webp" height={120} width={140} alt="background"/>
-                  <Image src="/backgrounds/drool-l.webp" height={120} width={140} alt="background"/>
-                  <Image src="/backgrounds/trees-l.webp" height={120} width={140} alt="background"/>
+                  <Image src="/backgrounds/bubbles-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/drool-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/trees-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/balloons-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/amber-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/default-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/keys-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/pills-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
+                  <Image src="/backgrounds/truchet-l.webp" height={120} width={140} alt="background"
+                         className={styles.background}/>
                 </div>
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </div>

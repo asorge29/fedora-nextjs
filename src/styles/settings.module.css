@@ -4,10 +4,8 @@
     height: 62vh;
     left: 5vw;
     top: 5vh;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 .header {
     height: 50px;
@@ -21,13 +19,17 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
+    border-radius: 10px 0 0 0;
 }
 .headerRight {
     width: 75%;
     background-color: #242424;
     height: 100%;
-    
+    border-radius: 0 10px 0 0;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 10px;
 }
 .container {
     display: flex;
@@ -42,6 +44,7 @@
     height: 100%;
     width: 25%;
     background-color: #303030;
+    border-radius: 0 0 0 10px;
 }
 .section {
     padding: 10px;
@@ -53,19 +56,25 @@
     width: 75%;
     background-color: #242424;
     height: 100%;
+    overflow-y: auto;
+    border-radius: 0 0 10px 0;
 }
 .appearanceContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px 0 0 0;
 }
 .groupLabel {
     width: 70%;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 .group {
     width: 70%;
     border-radius: 10px;
     background-color: #303030;
+    margin-bottom: 20px ;
 }
 .divider {
     width: 100%;
@@ -87,26 +96,34 @@
 }
 .backgrounds {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
     padding: 15px;
 }
-
-
+.background {
+    border-radius: 5px;
+}
+.schemes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+}
+.schemes > div {
+    text-align: center;
+}
+.schemes img {
+    border-radius: 5px;
+}
 
 
 @media (pointer: fine) {
     .section:hover {
         background-color: #ffffff2b;
-        cursor: pointer;
-    }
-    .closeButton:hover {
-        cursor: pointer;
-        background-color: #ffffff2b;
-    }
-    .colorSwatch:hover {
-        cursor: pointer;
     }
 }
 

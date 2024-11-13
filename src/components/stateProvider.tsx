@@ -29,7 +29,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     files: -1,
     settings: 0,
     background: "bubbles",
-    scheme: "default"
+    scheme: "l"
   });
 
   return (

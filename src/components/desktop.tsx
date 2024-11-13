@@ -36,7 +36,7 @@ export default function Desktop({id}: { id: number }) {
     >
       <div
         className={`${styles.desktop} ${state.maximized ? styles.maximizedDesktop : styles.notMaximizedDesktop}`}
-        style={{backgroundImage: `url('/backgrounds/${state.background}-${state.scheme === 'default' ? 'l' : 'd'}.webp')`}}
+        style={{backgroundImage: `url('/backgrounds/${state.background}-${state.scheme}.webp')`}}
         onClick={() => maximizeDesktop(id)}
         ref={setNodeRef}
       >
