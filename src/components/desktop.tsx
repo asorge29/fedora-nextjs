@@ -5,7 +5,6 @@ import Vscode from "./apps/vscode";
 import Firefox from "./apps/firefox";
 import React from "react";
 import {useDroppable} from "@dnd-kit/core";
-import {CiSettings} from "react-icons/ci";
 import Settings from "./apps/settings";
 
 
