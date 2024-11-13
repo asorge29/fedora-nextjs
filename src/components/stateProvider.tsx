@@ -25,7 +25,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     terminal: -1,
     firefox: -1,
     files: -1,
-    settings: -1,
+    settings: 0,
   });
 
   return (

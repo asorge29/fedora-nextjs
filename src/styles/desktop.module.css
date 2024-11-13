@@ -7,7 +7,7 @@
     transition-duration: 0.4s;
 }
 .desktop {
-    background-image: url("/bg-l.webp"); 
+    background-image: url("/backgrounds/default-l.webp");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

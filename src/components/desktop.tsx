@@ -5,6 +5,8 @@ import Vscode from "./apps/vscode";
 import Firefox from "./apps/firefox";
 import React from "react";
 import {useDroppable} from "@dnd-kit/core";
+import {CiSettings} from "react-icons/ci";
+import Settings from "./apps/settings";
 
 
 export default function Desktop({id}: { id: number }) {
@@ -42,7 +44,7 @@ export default function Desktop({id}: { id: number }) {
         {state.vscode === id && <Vscode/>}
         {state.firefox === id && <Firefox/>}
         {state.files === id && <div>Files</div>}
-        {state.settings === id && <div>Settings</div>}
+        {state.settings === id && <Settings />}
       </div>
     </div>
       );
