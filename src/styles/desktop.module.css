@@ -9,7 +9,7 @@
 .desktop {
     background-image: url("/backgrounds/default-l.webp");
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center;
     background-size: cover;
     height: 100%;
     width: 100%;

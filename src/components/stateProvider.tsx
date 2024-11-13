@@ -12,6 +12,8 @@ export type State = {
   firefox: number;
   files: number;
   settings: number;
+  background: string;
+  scheme: string;
 }
 const stateContext = createContext({});
 
@@ -26,6 +28,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     firefox: -1,
     files: -1,
     settings: 0,
+    background: "bubbles",
+    scheme: "default"
   });
 
   return (
