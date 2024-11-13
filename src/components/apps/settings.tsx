@@ -1,12 +1,12 @@
 import styles from "@/styles/settings.module.css";
-//import { useState } from "react";
+import { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import React from "react";
 import { useStateContext } from "../stateProvider";
 
 export default function Settings() {
   const { state, setState } = useStateContext();
-  // const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState();
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: "settings",
@@ -29,6 +29,14 @@ export default function Settings() {
       {...listeners}
       {...attributes}
     >
+      <div className={styles.header}>
+        <div className={styles.headerLeft}>
+          Settings
+        </div>
+        <div className={styles.headerRight}>
+          {selected}
+        </div>
+      </div>
       <div className={styles.container} onClick={closeApp}>
         <div className={styles.sections}>
           <div className={styles.section}>Background</div>
@@ -39,7 +47,7 @@ export default function Settings() {
           <div className={styles.section}></div>
           <div className={styles.section}></div>
         </div>
-        <div className={styles.test}></div>
+        <div className={styles.content}></div>
       </div>
     </div>
   );
