@@ -14,6 +14,7 @@ export type State = {
   settings: number;
   background: string;
   scheme: string;
+  battery: number;
 }
 const stateContext = createContext({});
 
@@ -29,7 +30,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     files: -1,
     settings: 0,
     background: "bubbles",
-    scheme: "l"
+    scheme: "l",
+    battery: 100
   });
 
   return (
