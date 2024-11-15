@@ -21,6 +21,10 @@ export default function Desktop({id}: { id: number }) {
   const maximizedStyle = {
     left: `calc(50% + ${-105 * state.selectedDesktop}vw + ${id * 105}vw)`
   };
+  
+  const appScreenStyle = {
+    left: `calc(50% + ${-250 * state.selectedDesktop}px + ${id * 260}px)`
+  };
 
   const maximizeDesktop = (id: number) => {
     if (!state.maximized) {
@@ -31,11 +35,11 @@ export default function Desktop({id}: { id: number }) {
 
   return (
     <div
-      className={`${styles.wrapper} ${state.maximized ? styles.maximized : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`}
-      style={state.maximized ? maximizedStyle : notMaximizedStyle}
+      className={`${styles.wrapper} ${state.maximized ? styles.maximized : state.appsScreen? styles.appTrayOpen : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`}
+      style={state.maximized ? maximizedStyle : state.appsScreen ? appScreenStyle : notMaximizedStyle}
     >
       <div
-        className={`${styles.desktop} ${state.maximized ? styles.maximizedDesktop : styles.notMaximizedDesktop}`}
+        className={`${styles.desktop} ${state.maximized ? styles.maximizedDesktop : state.appsScreen? styles.appTrayOpenDesktop : styles.notMaximizedDesktop}`}
         style={{backgroundImage: `url('/backgrounds/${state.background}-${state.scheme}.webp')`}}
         onClick={() => maximizeDesktop(id)}
         ref={setNodeRef}

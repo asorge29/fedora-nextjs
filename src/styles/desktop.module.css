@@ -1,6 +1,6 @@
 .wrapper {
     position: absolute;
-    left: 0%;
+    left: 0;
     top: 0;
     transform: translateX(-50%);
     z-index: 10;
@@ -34,5 +34,14 @@
     transform: translateX(-50%);
 }
 .notSelected {
-    height: 60vh;
+    height: calc(100% - 3% - 34px - 128px - 12px - 8vh);
+    top: calc(3% + 34px + 4vh);
+}
+.appTrayOpen {
+    height: 150px;
+    width: 250px;
+    top: 15%;
+}
+.appTrayOpenDesktop {
+    border-radius: 0;
 }

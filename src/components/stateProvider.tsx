@@ -6,6 +6,7 @@ export type State = {
   selectedDesktop: number;
   desktops: number;
   maximized: boolean;
+  appsScreen: boolean;
   spotify: number;
   vscode: number;
   terminal: number;
@@ -23,13 +24,14 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     selectedDesktop: 0,
     desktops: 2,
     maximized: false,
+    appsScreen: true,
     spotify: -1,
     vscode: -1,
     terminal: -1,
     firefox: -1,
     files: -1,
-    settings: 0,
-    background: "bubbles",
+    settings: -1,
+    background: "default",
     scheme: "l",
     battery: 100
   });
