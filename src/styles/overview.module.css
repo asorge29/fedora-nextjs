@@ -17,9 +17,9 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 3%;
+    top: 20px;
     background-color: #464646;
-    padding: 10px 20px;
+    padding: 5px 20px;
     border-radius: 999px;
     display: flex;
     flex-flow: row nowrap;
@@ -29,7 +29,7 @@
     outline: none;
     border: none;
     background-color: inherit;
-    font-size: 18px;
+    font-size: 16px;
     width: 30ch;
     font-family: "Cantarell";
 }
