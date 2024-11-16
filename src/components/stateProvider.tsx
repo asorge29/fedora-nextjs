@@ -24,7 +24,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     selectedDesktop: 0,
     desktops: 2,
     maximized: false,
-    appsScreen: true,
+    appsScreen: false,
     spotify: -1,
     vscode: -1,
     terminal: -1,

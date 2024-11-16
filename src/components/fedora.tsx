@@ -18,9 +18,7 @@ export default function Fedora() {
         } else {
           setState({ ...state, maximized: true });
         }
-      }
-
-      if (e.shiftKey) {
+      } else if (e.shiftKey) {
         e.preventDefault();
         if (e.deltaY > 5 && state.selectedDesktop < state.desktops - 1) {
           setState({ ...state, selectedDesktop: state.selectedDesktop + 1 });
@@ -28,18 +26,22 @@ export default function Fedora() {
         if (e.deltaY < -5 && state.selectedDesktop > 0) {
           setState({ ...state, selectedDesktop: state.selectedDesktop - 1 });
         }
-      }
-
-      if (e.deltaX !== 0) {
+      } else {
         e.preventDefault();
-        if (e.deltaX > 5 && state.selectedDesktop < state.desktops - 1) {
-          setState({ ...state, selectedDesktop: state.selectedDesktop + 1 });
+        if (e.deltaY > 5 && !state.appsScreen && !state.maximized) {
+          setState({ ...state, appsScreen: true });
+        } else if (e.deltaY < -5 && state.appsScreen && !state.maximized) {
+          setState({ ...state, appsScreen: false });
+        } else if (e.deltaX !== 0) {
+          if (e.deltaX > 5 && state.selectedDesktop < state.desktops - 1) {
+            setState({ ...state, selectedDesktop: state.selectedDesktop + 1 });
+          }
+          if (e.deltaX < -5 && state.selectedDesktop > 0) {
+            setState({ ...state, selectedDesktop: state.selectedDesktop - 1 });
+          }
         }
-        if (e.deltaX < -5 && state.selectedDesktop > 0) {
-          setState({ ...state, selectedDesktop: state.selectedDesktop - 1 });
-        }
-      }
-    };
+      };
+    }
 
     window.addEventListener("wheel", handleWheel, { passive: false });
 
