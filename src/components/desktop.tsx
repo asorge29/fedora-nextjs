@@ -15,7 +15,7 @@ export default function Desktop({id}: { id: number }) {
   });
 
   const notMaximizedStyle = {
-    left: `calc(50% + ${-80 * state.selectedDesktop}vw + ${id * 80}vw)`
+    left: `calc(50% + ${-84.3743 * state.selectedDesktop}vw + ${id * 84.3743}vw)`
   };
 
   const maximizedStyle = {
