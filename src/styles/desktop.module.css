@@ -4,7 +4,7 @@
     top: 0;
     transform: translateX(-50%);
     z-index: 10;
-    transition-duration: 0.4s;
+    transition-duration: 0.3s;
 }
 .desktop {
     background-image: url("/backgrounds/default-l.webp");
@@ -13,7 +13,7 @@
     background-size: cover;
     height: 100%;
     width: 100%;
-    transition-duration: 0.4s;
+    transition-duration: 0.3s;
 }
 .maximizedDesktop {
     border-radius: 0;

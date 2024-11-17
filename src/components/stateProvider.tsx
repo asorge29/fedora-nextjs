@@ -31,8 +31,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     firefox: -1,
     files: -1,
     settings: -1,
-    background: "truchet",
-    scheme: "l",
+    background: "drool",
+    scheme: "d",
     battery: 100
   });
 
