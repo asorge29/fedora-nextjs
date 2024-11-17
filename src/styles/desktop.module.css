@@ -34,8 +34,8 @@
     transform: translateX(-50%);
 }
 .notSelected {
-    height: calc(100% - 3% - 34px - 128px - 12px - 8vh);
-    top: calc(3% + 34px + 4vh);
+    height: calc(100% - 275px);
+    top: 105px;
 }
 .appTrayOpen {
     height: 150px;
