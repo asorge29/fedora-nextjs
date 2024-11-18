@@ -35,7 +35,7 @@ export default function Desktop({id}: { id: number }) {
 
   return (
     <div
-      className={`${styles.wrapper} ${state.maximized ? styles.maximized : state.appsScreen? styles.appTrayOpen : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`}
+      className={`${styles.wrapper} ${state.maximized ? styles.maximized : state.appsScreen? state.selectedDesktop === id ? styles.appTrayOpenSelected : styles.appTrayOpen : styles.notMaximized} ${state.selectedDesktop !== id && !state.maximized ? styles.notSelected : null}`}
       style={state.maximized ? maximizedStyle : state.appsScreen ? appScreenStyle : notMaximizedStyle}
     >
       <div

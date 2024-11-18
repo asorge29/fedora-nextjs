@@ -40,7 +40,12 @@
 .appTrayOpen {
     height: 147px;
     width: 270px;
-    top: 15%;
+    top: 9%;
+}
+.appTrayOpenSelected {
+    height: 161px;
+    width: 270px;
+    top: calc(9% - 7px);
 }
 .appTrayOpenDesktop {
     border-radius: 0;
