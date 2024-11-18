@@ -35,10 +35,10 @@
 }
 .tabs {
     position: absolute;
-    left: 0;
+    left: 3px;
     top: 50%;
     transform: translateY(-50%);
-    padding: 4px 1ch;
+    padding: 9px 12px;
     height: 24px;
     display: flex;
     flex-flow: row nowrap;
