@@ -23,7 +23,7 @@ export default function Desktop({id}: { id: number }) {
   };
   
   const appScreenStyle = {
-    left: `calc(50% + ${id * 280}px - ${(state.desktops - id) * 140}px)`
+    left: `calc(50% + ${id * 280}px - ${140 *( state.desktops - 1)}px)`
   };
 
   const maximizeDesktop = (id: number) => {
