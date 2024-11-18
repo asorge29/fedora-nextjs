@@ -22,7 +22,7 @@ const stateContext = createContext({});
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, setState] = useState<State>({
     selectedDesktop: 0,
-    desktops: 2,
+    desktops: 3,
     maximized: false,
     appsScreen: false,
     spotify: -1,
