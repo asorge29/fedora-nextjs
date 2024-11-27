@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import styles from "../styles/fedora.module.css";
 import { useStateContext } from "./stateProvider";
 import Overview from "./overview";
@@ -8,18 +8,24 @@ import TopBar from "./topBar";
 
 export default function Fedora() {
   const { state, setState } = useStateContext();
+  const lastScroll = useRef<number>(0);
+  const totalDeltaX = useRef<number>(0);
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      e.preventDefault()
+
+      const now = Date.now()
+
+      lastScroll.current = now
+
       if (e.ctrlKey) {
-        e.preventDefault();
         if (e.deltaY > 0) {
           setState({ ...state, maximized: false });
         } else {
           setState({ ...state, maximized: true });
         }
       } else if (e.shiftKey) {
-        e.preventDefault();
         if (e.deltaY > 5 && state.selectedDesktop < state.desktops - 1) {
           setState({ ...state, selectedDesktop: state.selectedDesktop + 1 });
         }
@@ -27,7 +33,6 @@ export default function Fedora() {
           setState({ ...state, selectedDesktop: state.selectedDesktop - 1 });
         }
       } else {
-        e.preventDefault();
         if (e.deltaY > 5 && !state.appsScreen && !state.maximized) {
           setState({ ...state, appsScreen: true });
         } else if (e.deltaY < -5 && state.appsScreen && !state.maximized) {

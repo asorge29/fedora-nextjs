@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
+    "devicon": "^2.16.0",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",

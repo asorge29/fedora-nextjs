@@ -36,6 +36,10 @@ export default function Overview() {
     }
   }
 
+  const toggleAppScreen = () => {
+    setState({...state, appsScreen: !state.appsScreen})
+  }
+
   return (
     <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
       <div
@@ -67,6 +71,23 @@ export default function Overview() {
         {[...Array(state.desktops)].map((_, i) => (
           <Desktop key={i} id={i}/>
         ))}
+        <div className={styles.appTray}>
+          <div className={styles.trayItem} onClick={() => openApp("files")}>
+            <Image src="/files.svg" height={96} width={96} alt="files"/>
+          </div>
+          <div className={styles.trayItem} onClick={() => openApp("vscode")}>
+            <Image src="/vscode.svg" height={96} width={96} alt="vscode"/>
+          </div>
+          <div className={styles.trayItem} onClick={() => openApp("firefox")}>
+            <Image src="/firefox.svg" height={96} width={96} alt="firefox"/>
+          </div>
+          <div className={styles.trayItem} onClick={() => openApp("terminal")}>
+            <Image src="/terminal.svg" height={96} width={96} alt="terminal"/>
+          </div>
+          <div className={styles.trayItem} onClick={() => openApp("spotify")}>
+            <Image src="/spotify.svg" height={96} width={96} alt="spotify"/>
+          </div>
+        </div>
         <div className={styles.dock}>
           <div className={styles.dockItem} onClick={() => openApp("files")}>
             <Image src="/files.svg" height={64} width={64} alt="files"/>
@@ -84,7 +105,7 @@ export default function Overview() {
             <Image src="/spotify.svg" height={64} width={64} alt="spotify"/>
           </div>
           <div className={styles.divider}></div>
-          <div className={styles.dockItem}>All apps</div>
+          <div className={styles.dockItem} onClick={toggleAppScreen}>All apps</div>
         </div>
       </div>
     </DndContext>

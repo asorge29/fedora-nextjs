@@ -65,9 +65,37 @@
     width: 1px;
     background-color: #4f4f4f;
 }
+.appTray {
+    width: 70vw;
+    height: 600px;
+    background-color: red;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 124px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    align-items: start;
+    gap: 50px;
+}
+.trayItem {
+    height: 128px;
+    width: 128px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.trayItem > img {
+    display: block;
+}
 
 @media (pointer: fine) {
     .dockItem:hover {
+        background-color: #ffffff2b;
+    }
+    .trayItem:hover {
         background-color: #ffffff2b;
     }
 }
