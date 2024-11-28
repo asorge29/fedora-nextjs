@@ -66,18 +66,17 @@
     background-color: #4f4f4f;
 }
 .appTray {
-    width: 70vw;
-    height: 600px;
-    background-color: red;
+    width: 75vw;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    top: calc(9% + 168px + 50px);
     bottom: 124px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: start;
-    align-items: start;
-    gap: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(128px, auto));
+    grid-template-rows: repeat(auto-fit, 128px);
+    gap: 36px;
+    justify-items: center;
 }
 .trayItem {
     height: 128px;

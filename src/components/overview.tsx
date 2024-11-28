@@ -87,6 +87,9 @@ export default function Overview() {
           <div className={styles.trayItem} onClick={() => openApp("spotify")}>
             <Image src="/spotify.svg" height={96} width={96} alt="spotify"/>
           </div>
+          <div className={styles.trayItem} onClick={() => openApp("settings")}>
+            <Image src="/settings.svg" height={96} width={96} alt="settings"/>
+          </div>
         </div>
         <div className={styles.dock}>
           <div className={styles.dockItem} onClick={() => openApp("files")}>

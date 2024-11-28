@@ -9,7 +9,7 @@ import TopBar from "./topBar";
 export default function Fedora() {
   const { state, setState } = useStateContext();
   const lastScroll = useRef<number>(0);
-  const totalDeltaX = useRef<number>(0);
+  //const totalDeltaX = useRef<number>(0);
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
