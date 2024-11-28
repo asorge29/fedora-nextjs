@@ -90,6 +90,12 @@ export default function Overview() {
           <div className={styles.trayItem} onClick={() => openApp("settings")}>
             <Image src="/settings.svg" height={96} width={96} alt="settings"/>
           </div>
+          <div className={styles.trayItem} onClick={() => openApp("firefox")}>
+            <Image src="/tour.svg" height={96} width={96} alt="tour"/>
+          </div>
+          <div className={styles.trayItem} onClick={() => openApp("firefox")}>
+            <Image src="/maps.svg" height={96} width={96} alt="maps"/>
+          </div>
         </div>
         <div className={styles.dock}>
           <div className={styles.dockItem} onClick={() => openApp("files")}>
@@ -114,3 +120,4 @@ export default function Overview() {
     </DndContext>
   );
 }
+//https://emgithub.com/asorge29/asorge29/blob/main/README.md

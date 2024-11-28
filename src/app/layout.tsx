@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Cantarell } from "next/font/google";
+import { Inter } from "next/font/google";
 import "../styles/globals.css";
 
-const font = Cantarell({
-  weight: "400",
+const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
