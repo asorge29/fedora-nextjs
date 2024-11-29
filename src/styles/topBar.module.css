@@ -70,6 +70,60 @@
     height: 8px;
 }
 
+.systemMenu {
+    position: absolute;
+    right: 6px;
+    top: 42px;
+    height: 336px;
+    width: 400px;
+    background-color: #353535;
+    z-index: 999999999;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: start;
+}
+.topSection {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.battery {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff2b;
+    padding: 12px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+.shortcuts {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+}
+.shortcut {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff2b;
+    padding: 12px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+.slider {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+
 @media (pointer: fine) {
     .topBarItem:hover {
         cursor: default;

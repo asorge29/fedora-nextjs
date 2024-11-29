@@ -21,6 +21,10 @@ export default function Settings() {
   const closeApp = () => {
     setState({ ...state, settings: -1 });
   };
+  
+  const setAccentColor = (color: string) => {
+    setState({...state, accentColor: color});
+  }
 
   return (
     <div
@@ -94,15 +98,15 @@ export default function Settings() {
                 </div>
                 <div className={styles.divider}></div>
                 <div className={styles.colorSwatches}>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#3584e4'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#2190a4'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#3a944a'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#c88800'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#ed5b00'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#e62d42'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#d56199'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#9141ac'}}></div>
-                  <div className={styles.colorSwatch} style={{backgroundColor: '#6f8396'}}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#3584e4'}} onClick={() => setAccentColor('#3584e4')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#2190a4'}} onClick={() => setAccentColor('#2190a4')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#3a944a'}} onClick={() => setAccentColor('#3a944a')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#c88800'}} onClick={() => setAccentColor('#c88800')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#ed5b00'}} onClick={() => setAccentColor('#ed5b00')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#e62d42'}} onClick={() => setAccentColor('#e62d42')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#d56199'}} onClick={() => setAccentColor('#d56199')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#9141ac'}} onClick={() => setAccentColor('#9141ac')}></div>
+                  <div className={styles.colorSwatch} style={{backgroundColor: '#6f8396'}} onClick={() => setAccentColor('#6f8396')}></div>
                 </div>
               </div>
               <div className={styles.groupLabel}>Background</div>

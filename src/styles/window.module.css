@@ -1,9 +1,9 @@
 .window {
     position: absolute;
-    width: 55vw;
-    height: 62vh;
-    left: 5vw;
-    top: 5vh;
+    width: 55%;
+    height: 62%;
+    left: 5%;
+    top: 5%;
     background-color: #282828;
     border-radius: 10px;
 }
