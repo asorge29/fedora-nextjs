@@ -74,7 +74,6 @@
     position: absolute;
     right: 6px;
     top: 42px;
-    height: 336px;
     width: 400px;
     background-color: #353535;
     z-index: 999999999;
@@ -82,6 +81,9 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: start;
+    padding: 20px;
+    gap: 15px;
+    border-radius: 20px;
 }
 .topSection {
     display: flex;
@@ -121,8 +123,30 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    gap: 16px;
 }
-
+.slider > input {
+    width: 100%;
+}
+.options {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+.option {
+    width: 48%;
+    height: 50px;
+    border-radius: 999px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    padding: 12px;
+}
 
 @media (pointer: fine) {
     .topBarItem:hover {

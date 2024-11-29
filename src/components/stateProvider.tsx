@@ -17,6 +17,8 @@ export type State = {
   scheme: string;
   battery: number;
   accentColor: string;
+  brightness: number;
+  volume: number;
 }
 const stateContext = createContext({});
 
@@ -36,6 +38,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     scheme: "d",
     battery: 100,
     accentColor: "#3584e4",
+    brightness: 90,
+    volume: 80,
   });
 
   return (

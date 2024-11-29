@@ -1,14 +1,16 @@
 "use client";
 
 import styles from "../styles/topBar.module.css";
-import {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {getTimeFormatted} from "@/lib/getTimeFormatted";
 import {getDateFormatted} from "@/lib/getDateFormatted";
 import {State, useStateContext} from "./stateProvider";
+import Image from "next/image";
 
 export default function TopBar() {
   const [time, setTime] = useState<string>(getTimeFormatted);
   const [date, setDate] = useState<string>(getDateFormatted);
+  const [systemMenuOpen, setSystemMenuOpen] = useState<boolean>(false);
   const {state, setState} = useStateContext();
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function TopBar() {
         <div>{date}</div>
         <div>{time}</div>
       </div>
-      <div className={`${styles.topBarItem} ${styles.rightMenu}`}>
+      <div className={`${styles.topBarItem} ${styles.rightMenu}`} onClick={() => setSystemMenuOpen(!systemMenuOpen)}>
         <div>
           <svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -61,15 +63,23 @@ export default function TopBar() {
           </svg>
         </div>
       </div>
-      <SystemMenu state={state} setState={setState}/>
+      <SystemMenu state={state} setState={setState} open={systemMenuOpen}/>
     </div>
   );
 }
 
-function SystemMenu({ state, setState } :{state: State, setState: (state: State) => void}) {
-  
+function SystemMenu({state, setState, open}: { state: State, setState: (state: State) => void, open:boolean }) {
+
+  const updateBrightness = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState({...state, brightness: e.target.valueAsNumber})
+  }
+
+  const updateVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState({...state, volume: e.target.valueAsNumber})
+  }
+
   return (
-    <div className={styles.systemMenu}>
+    <div className={styles.systemMenu} style={{display: open ? "flex" : "none"}}>
       <div className={styles.topSection}>
         <div className={styles.battery}>
           <svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
@@ -121,10 +131,31 @@ function SystemMenu({ state, setState } :{state: State, setState: (state: State)
         </div>
       </div>
       <div className={styles.slider}>
-        <input type="range" min="0" max="100" step="1" style={{accentColor: `${state.accentColor}`}}/>
+        <svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m 7 1.007812 c -0.296875 -0.003906 -0.578125 0.125 -0.765625 0.351563 l -3.234375 3.640625 h -1 c -1.09375 0 -2 0.84375 -2 2 v 2 c 0 1.089844 0.910156 2 2 2 h 1 l 3.234375 3.640625 c 0.210937 0.253906 0.488281 0.363281 0.765625 0.359375 z m 6.460938 0.960938 c -0.191407 0 -0.386719 0.054688 -0.558594 0.171875 c -0.457032 0.308594 -0.578125 0.929687 -0.269532 1.386719 c 1.824219 2.707031 1.824219 6.238281 0 8.945312 c -0.308593 0.457032 -0.1875 1.078125 0.269532 1.390625 c 0.457031 0.308594 1.078125 0.1875 1.390625 -0.269531 c 1.136719 -1.691406 1.707031 -3.640625 1.707031 -5.59375 s -0.570312 -3.902344 -1.707031 -5.589844 c -0.195313 -0.289062 -0.511719 -0.441406 -0.832031 -0.441406 z m -3.421876 2.023438 c -0.222656 -0.011719 -0.453124 0.054687 -0.644531 0.199218 c -0.261719 0.199219 -0.394531 0.5 -0.394531 0.804688 v 0.0625 c 0.011719 0.1875 0.074219 0.371094 0.199219 0.535156 c 1.074219 1.425781 1.074219 3.386719 0 4.816406 c -0.125 0.160156 -0.1875 0.34375 -0.199219 0.535156 v 0.058594 c 0 0.304688 0.132812 0.605469 0.394531 0.804688 c 0.441407 0.332031 1.070313 0.242187 1.402344 -0.195313 c 0.800781 -1.070312 1.207031 -2.339843 1.207031 -3.613281 s -0.40625 -2.542969 -1.207031 -3.609375 c -0.1875 -0.25 -0.46875 -0.386719 -0.757813 -0.398437 z m 0 0"
+            fill="currentColor"/>
+        </svg>
+        <input type="range" min="0" max="100" step="1" style={{accentColor: state.accentColor}}
+               onChange={updateVolume} defaultValue={state.volume}/>
       </div>
       <div className={styles.slider}>
-        <input type="range" min="0" max="100" step="1" style={{accentColor: `${state.accentColor}`}}/>
+        <svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m 8 0 c -0.554688 0 -1 0.445312 -1 1 v 1 c 0 0.554688 0.445312 1 1 1 s 1 -0.445312 1 -1 v -1 c 0 -0.554688 -0.445312 -1 -1 -1 z m -4.992188 2.003906 c -0.257812 0 -0.511718 0.097656 -0.707031 0.296875 c -0.394531 0.390625 -0.394531 1.019531 0 1.414063 l 0.707031 0.707031 c 0.390626 0.390625 1.019532 0.390625 1.414063 0 c 0.390625 -0.394531 0.390625 -1.023437 0 -1.414063 l -0.707031 -0.707031 c -0.199219 -0.199219 -0.453125 -0.296875 -0.707032 -0.296875 z m 9.988282 0 c -0.257813 0 -0.511719 0.097656 -0.707032 0.296875 l -0.707031 0.707031 c -0.394531 0.390626 -0.394531 1.019532 0 1.414063 c 0.390625 0.390625 1.019531 0.390625 1.414063 0 l 0.707031 -0.707031 c 0.390625 -0.394532 0.390625 -1.023438 0 -1.414063 c -0.199219 -0.199219 -0.453125 -0.296875 -0.707031 -0.296875 z m -4.996094 2.496094 c -1.933594 0 -3.5 1.566406 -3.5 3.5 s 1.566406 3.5 3.5 3.5 s 3.5 -1.566406 3.5 -3.5 s -1.566406 -3.5 -3.5 -3.5 z m -7 2.5 c -0.554688 0 -1 0.445312 -1 1 s 0.445312 1 1 1 h 1 c 0.554688 0 1 -0.445312 1 -1 s -0.445312 -1 -1 -1 z m 13 0 c -0.554688 0 -1 0.445312 -1 1 s 0.445312 1 1 1 h 1 c 0.554688 0 1 -0.445312 1 -1 s -0.445312 -1 -1 -1 z m -10.335938 4.289062 c -0.238281 0.007813 -0.472656 0.109376 -0.65625 0.292969 l -0.707031 0.707031 c -0.394531 0.390626 -0.394531 1.019532 0 1.414063 c 0.390625 0.390625 1.019531 0.390625 1.414063 0 l 0.707031 -0.707031 c 0.390625 -0.394532 0.390625 -1.023438 0 -1.414063 c -0.210937 -0.210937 -0.484375 -0.308593 -0.757813 -0.292969 z m 8.574219 0 c -0.238281 0.007813 -0.472656 0.109376 -0.65625 0.292969 c -0.394531 0.390625 -0.394531 1.019531 0 1.414063 l 0.707031 0.707031 c 0.390626 0.390625 1.019532 0.390625 1.414063 0 c 0.390625 -0.394531 0.390625 -1.023437 0 -1.414063 l -0.707031 -0.707031 c -0.210938 -0.210937 -0.484375 -0.308593 -0.757813 -0.292969 z m -4.289062 1.710938 c -0.53125 0.027344 -0.949219 0.464844 -0.949219 1 v 1 c 0 0.554688 0.445312 1 1 1 s 1 -0.445312 1 -1 v -1 c 0 -0.554688 -0.445312 -1 -1 -1 c -0.015625 0 -0.035156 0 -0.050781 0 z m 0 0"
+            fill="currentColor"/>
+        </svg>
+
+        <input type="range" min="0" max="100" step="1" style={{accentColor: state.accentColor}}
+               onChange={updateBrightness} defaultValue={state.brightness}/>
+      </div>
+      <div className={styles.options}>
+        <div className={styles.option} style={{backgroundColor: state.accentColor}}><Image  src="/wifi.svg" alt="Wifi Logo" width={16} height={16}/>Wi-Fi</div>
+        <div className={styles.option} style={{backgroundColor: state.accentColor}}>Bluetooth</div>
+        <div className={styles.option} style={{backgroundColor: state.accentColor}}>Power Mode</div>
+        <div className={styles.option} style={{backgroundColor: state.accentColor}}>Night Light</div>
+        <div className={styles.option} style={{backgroundColor: state.accentColor}}>Dark Style</div>
+        <div className={styles.option} style={{backgroundColor: state.accentColor}}>Airplane Mode</div>
       </div>
     </div>
   )
