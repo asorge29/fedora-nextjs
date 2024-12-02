@@ -23,7 +23,7 @@ export default function Fedora() {
         if (e.deltaY > 0) {
           setState({...state, maximized: false});
         } else {
-          setState({...state, maximized: true});
+          setState({...state, maximized: true, appsScreen: false});
         }
       } else if (e.shiftKey) {
         if (e.deltaY > 5 && state.selectedDesktop < state.desktops - 1) {

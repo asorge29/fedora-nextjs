@@ -70,6 +70,17 @@ export default function TopBar() {
 
 function SystemMenu({state, setState, open}: { state: State, setState: (state: State) => void, open:boolean }) {
 
+  useEffect(() => {
+  const handleClick = (e: MouseEvent) => {
+      console.log(e)
+    }
+    window.addEventListener("click", handleClick, {passive: false});
+
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, [open]);
+
   const updateBrightness = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({...state, brightness: e.target.valueAsNumber})
   }
