@@ -56,7 +56,7 @@ export default function Fedora() {
   }, [state, setState]);
 
   return (
-    <div className={styles.screen} style={{filter: `brightness(${state.brightness + 10}%)`}}>
+    <div className={styles.screen} style={{filter: `brightness(${state.brightness}%)`}}>
       <TopBar />
       <Overview />
     </div>

@@ -38,7 +38,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     scheme: "d",
     battery: 100,
     accentColor: "#3584e4",
-    brightness: 90,
+    brightness: 100,
     volume: 80,
   });
 

@@ -28,7 +28,7 @@ export default function Desktop({id}: { id: number }) {
 
   const maximizeDesktop = (id: number) => {
     if (!state.maximized) {
-      setState({...state, maximized: true, selectedDesktop: id});
+      setState({...state, maximized: true, selectedDesktop: id, appsScreen: false});
       return;
     }
   };
