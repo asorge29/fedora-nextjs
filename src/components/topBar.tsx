@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../styles/topBar.module.css";
-import React, {useEffect, useState} from "react";
+import React, {Ref, useEffect, useRef, useState} from "react";
 import {getTimeFormatted} from "@/lib/getTimeFormatted";
 import {getDateFormatted} from "@/lib/getDateFormatted";
 import {State, useStateContext} from "./stateProvider";
@@ -63,21 +63,30 @@ export default function TopBar() {
           </svg>
         </div>
       </div>
-      <SystemMenu state={state} setState={setState} open={systemMenuOpen}/>
+      <SystemMenu open={systemMenuOpen} setOpen={setSystemMenuOpen}/>
     </div>
   );
 }
 
-function SystemMenu({state, setState, open}: { state: State, setState: (state: State) => void, open:boolean }) {
+function SystemMenu({open, setOpen}: { open: boolean, setOpen: (open: boolean) => void }) {
+
+  const systemMenuRef = useRef(null)
+
+  const handleClick = (e: MouseEvent) => {
+    if (systemMenuRef.current && !systemMenuRef.current.contains(e.target)) {
+      setOpen(false)
+    }
+  }
 
   useEffect(() => {
-  const handleClick = (e: MouseEvent) => {
-      console.log(e)
+    if (open) {
+      document.addEventListener("mousedown", handleClick, {passive: false});
+    } else {
+      document.removeEventListener("mousedown", handleClick)
     }
-    window.addEventListener("click", handleClick, {passive: false});
 
     return () => {
-      window.removeEventListener("click", handleClick);
+      document.removeEventListener("mousedown", handleClick);
     };
   }, [open]);
 
@@ -90,7 +99,7 @@ function SystemMenu({state, setState, open}: { state: State, setState: (state: S
   }
 
   return (
-    <div className={styles.systemMenu} style={{display: open ? "flex" : "none"}}>
+    <div className={styles.systemMenu} style={{display: open ? "flex" : "none"}} ref={systemMenuRef}>
       <div className={styles.topSection}>
         <div className={styles.battery}>
           <svg height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg">
