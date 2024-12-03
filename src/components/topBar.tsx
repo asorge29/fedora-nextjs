@@ -71,14 +71,15 @@ export default function TopBar() {
 function SystemMenu({open, setOpen}: { open: boolean, setOpen: (open: boolean) => void }) {
 
   const systemMenuRef = useRef(null)
-
-  const handleClick = (e: MouseEvent) => {
-    if (systemMenuRef.current && !systemMenuRef.current.contains(e.target)) {
-      setOpen(false)
-    }
-  }
+  const {state, setState} = useStateContext();
 
   useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (systemMenuRef.current && !systemMenuRef.current.contains(e.target)) {
+        setOpen(false)
+      }
+    }
+    
     if (open) {
       document.addEventListener("mousedown", handleClick, {passive: false});
     } else {
@@ -88,7 +89,7 @@ function SystemMenu({open, setOpen}: { open: boolean, setOpen: (open: boolean) =
     return () => {
       document.removeEventListener("mousedown", handleClick);
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   const updateBrightness = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({...state, brightness: e.target.valueAsNumber})
