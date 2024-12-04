@@ -83,15 +83,23 @@ export default function Settings() {
               <div className={styles.group}>
                 <div className={styles.schemes}>
                   <div>
-                    <div>
+                    <div style={{position: "relative"}}>
                       <Image src={`/backgrounds/${state.background}-${state.scheme}.webp`} alt='Default Scheme' width={180} height={150} />
+                      <div className={styles.mockWindowDark2}></div>
+                      <div className={styles.mockWindowLight}>
+                        <div></div>
+                      </div>
                     </div>
                     Default
                   </div>
                   <div>
-                    <div>
+                    <div style={{position: "relative"}}>
                       <Image src={`/backgrounds/${state.background}-${state.scheme}.webp`} alt='Dark Scheme'
                              width={180} height={150}/>
+                      <div className={styles.mockWindowDark1}>
+                        <div></div>
+                      </div>
+                      <div className={styles.mockWindowDark2}></div>
                     </div>
                     Dark
                   </div>
