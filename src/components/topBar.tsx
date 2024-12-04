@@ -1,11 +1,10 @@
 "use client";
 
 import styles from "../styles/topBar.module.css";
-import React, {Ref, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {getTimeFormatted} from "@/lib/getTimeFormatted";
 import {getDateFormatted} from "@/lib/getDateFormatted";
-import {State, useStateContext} from "./stateProvider";
-import Image from "next/image";
+import {useStateContext} from "./stateProvider";
 
 export default function TopBar() {
   const [time, setTime] = useState<string>(getTimeFormatted);
@@ -75,7 +74,7 @@ function SystemMenu({open, setOpen}: { open: boolean, setOpen: (open: boolean) =
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (systemMenuRef.current && !systemMenuRef.current.contains(e.target)) {
+      if (systemMenuRef.current && !(systemMenuRef.current as Node).contains(e.target as Node)) {
         setOpen(false)
       }
     }

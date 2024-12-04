@@ -31,8 +31,10 @@ export default function Overview() {
   )
   
   const handleDragEnd = (e: DragEndEvent) => {
-    if (e.over) {
+    if (e.over && e.over.id !== state[e.active.id as keyof typeof state]) {
       setState({...state, [e.active.id]: e.over.id, selectedDesktop: e.over.id as number});
+    } else {
+      console.log(e)
     }
   }
 

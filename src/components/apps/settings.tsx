@@ -12,11 +12,7 @@ export default function Settings() {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: "settings",
   });
-  const style = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : undefined;
+  const style = transform ? {transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,} : undefined;
 
   const closeApp = () => {
     setState({ ...state, settings: -1 });
@@ -24,6 +20,10 @@ export default function Settings() {
   
   const setAccentColor = (color: string) => {
     setState({...state, accentColor: color});
+  }
+
+  const setScheme = (scheme: string) => {
+    setState({...state, scheme: scheme});
   }
 
   return (
@@ -83,9 +83,11 @@ export default function Settings() {
               <div className={styles.group}>
                 <div className={styles.schemes}>
                   <div>
-                    <div style={{position: "relative"}}>
-                      <Image src={`/backgrounds/${state.background}-${state.scheme}.webp`} alt='Default Scheme' width={180} height={150} />
-                      <div className={styles.mockWindowDark2}></div>
+                    <div className={styles.schemeWrapper} style={{borderColor: state.scheme === 'l' ? state.accentColor : 'transparent'}} onClick={() => setScheme('l')}>
+                      <Image src={`/backgrounds/${state.background}-${state.scheme}.webp`} alt='Default Scheme' width={200} height={150} />
+                      <div className={styles.mockWindowDark2}>
+                        <div></div>
+                      </div>
                       <div className={styles.mockWindowLight}>
                         <div></div>
                       </div>
@@ -93,13 +95,15 @@ export default function Settings() {
                     Default
                   </div>
                   <div>
-                    <div style={{position: "relative"}}>
+                    <div className={styles.schemeWrapper} style={{borderColor: state.scheme === 'd' ? state.accentColor : 'transparent'}} onClick={() => setScheme('d')}>
                       <Image src={`/backgrounds/${state.background}-${state.scheme}.webp`} alt='Dark Scheme'
-                             width={180} height={150}/>
+                             width={200} height={150}/>
+                      <div className={styles.mockWindowDark2}>
+                        <div></div>
+                      </div>
                       <div className={styles.mockWindowDark1}>
                         <div></div>
                       </div>
-                      <div className={styles.mockWindowDark2}></div>
                     </div>
                     Dark
                   </div>
